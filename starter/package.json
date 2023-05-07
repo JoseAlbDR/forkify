@@ -1,0 +1,29 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseAlbDR/forkify.git"
+  },
+  "author": "Jose Alberto Delgado Robles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseAlbDR/forkify/issues"
+  },
+  "homepage": "https://github.com/JoseAlbDR/forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "core-js": "^3.30.2",
+    "regenerator-runtime": "^0.13.11",
+    "sass": "^1.62.1"
+  }
+}
