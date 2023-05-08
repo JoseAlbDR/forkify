@@ -54,7 +54,7 @@ export const loadSearchResults = async function (query) {
     // If there are no results throw an error
     if (!data.results) throw new Error('Recipe not found, try another one.');
 
-    // Populate results array with results
+    // Populate results array with recipes
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,

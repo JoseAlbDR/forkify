@@ -3,14 +3,15 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
 
-// import icons from "../img/icons.svg" // Parcel 1
-// Parcel 2
-
 // Pollyfilling
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { async } from 'regenerator-runtime';
 
-const recipeContainer = document.querySelector('.recipe');
+// Parcel hot reload
+if (module.hot) {
+  module.hot.accept();
+}
 
 /**
  * Controler logic to render a recipe
@@ -18,6 +19,7 @@ const recipeContainer = document.querySelector('.recipe');
  */
 const controlRecipe = async function () {
   try {
+    // Save the recipe id
     const id = window.location.hash.slice(1);
 
     // Guard clause
@@ -31,6 +33,8 @@ const controlRecipe = async function () {
 
     // Rendering recipe
     recipeView.render(model.state.recipe);
+
+    // Error handling
   } catch (err) {
     console.error(err.message);
     recipeView.renderError(err.message);
@@ -42,6 +46,7 @@ const controlRecipe = async function () {
  */
 const controlSearchResults = async function () {
   try {
+    // Loading spinner
     resultView.renderSpinner();
 
     // Get query from input field

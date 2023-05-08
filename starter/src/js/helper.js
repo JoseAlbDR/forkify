@@ -34,7 +34,6 @@ export const getJSON = async function (url) {
     // Error propagation
   } catch (err) {
     // Rethrow error, async fn calling async fn
-    console.log(err);
     throw err;
   }
 };

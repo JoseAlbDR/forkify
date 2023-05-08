@@ -9,6 +9,9 @@ class SearchView {
     const input = this._parentEl.querySelector('.search__field').value;
     this._clearInput();
 
+    if (!input)
+      throw new Error('Search input empty. Try to search anything ;)');
+
     return input;
   }
 
