@@ -55,6 +55,8 @@ const controlSearchResults = async function () {
 
     // Render all results
     resultView.render(model.state.search.results);
+
+    // Error handling
   } catch (err) {
     console.error(err);
     resultView.renderError(err.message);

@@ -33,6 +33,8 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
+
+    // Error propagation
   } catch (err) {
     throw err;
   }
@@ -61,6 +63,8 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
+
+    // Error propagation
   } catch (err) {
     throw err;
   }

@@ -11,8 +11,8 @@ export default class View {
    * @param {*} data the recipe data
    */
   render(data) {
+    // Save data into class
     this._data = data;
-    console.log(data);
 
     // Generate markup
     const markup = this._generateMarkup();
@@ -42,7 +42,11 @@ export default class View {
         </svg>
       </div>
     `;
+
+    // Clear parent
     this._clear();
+
+    // Render markup
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -61,12 +65,16 @@ export default class View {
         <p>${message}</p>
       </div>
     `;
+
+    // Clear parent
     this._clear();
+
+    // Render error
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   /**
-   * Render error message
+   * Render success message
    * @param {*} message given
    */
   renderMessage(message = this._message) {
@@ -80,7 +88,11 @@ export default class View {
         <p>${message}</p>
       </div>
     `;
+
+    // Clear parent
     this._clear();
+
+    // Render success message
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }

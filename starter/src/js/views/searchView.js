@@ -12,6 +12,9 @@ class SearchView {
     return input;
   }
 
+  /**
+   * Clear search input
+   */
   _clearInput() {
     this._parentEl.querySelector('.search__field').value = '';
   }

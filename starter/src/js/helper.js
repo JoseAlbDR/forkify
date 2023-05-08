@@ -30,6 +30,8 @@ export const getJSON = async function (url) {
     if (!response.ok)
       throw new Error(`We could not find that recipe. Please try another one!`);
     return data;
+
+    // Error propagation
   } catch (err) {
     // Rethrow error, async fn calling async fn
     console.log(err);
