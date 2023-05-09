@@ -11,7 +11,7 @@ export const state = {
     query: '',
     results: [],
     page: 1,
-    resultsPerPage: PAGINATION_SIZE,
+    resultsPerPage: 10,
   },
 };
 

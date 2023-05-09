@@ -25,6 +25,52 @@ export default class View {
   }
 
   /**
+   * Update the DOM only where the text or attributes changes
+   * @param {*} data
+   */
+  update(data) {
+    this._data = data;
+
+    // Generate markup with the new data (after click + or - button)
+    const newMarkup = this._generateMarkup();
+
+    // Convert newMarkup to a DOM element
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+
+    // Save new DOM nodes into an array
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+
+    // Save current DOM nodes into an array
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+
+    // Loop for each new element
+    newElements.forEach((newEl, i) => {
+      // Save the current element
+      const curEl = curElements[i];
+
+      // Updates changed TEXT
+      // Check that newEl and curEl are different
+      if (
+        !newEl.isEqualNode(curEl) &&
+        // Text value not empty
+        newEl.firstChild.nodeValue.trim() !== ''
+      ) {
+        // Save the TEXT
+        curEl.textContent = newEl.textContent;
+      }
+
+      // Updates changed ATTRIBUTES
+      if (!newEl.isEqualNode(curEl)) {
+        // For each attribute in newEl != to curEl
+        Array.from(newEl.attributes).forEach(attr =>
+          // Set curEl attribute to newEl attribute
+          curEl.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
+  }
+
+  /**
    * Clear innerHtml of parent element
    */
   _clear() {

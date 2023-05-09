@@ -2,7 +2,7 @@ class SearchView {
   _parentEl = document.querySelector('.search');
 
   /**
-   * Get text from for form input
+   * Get text from form input
    * @returns input text
    */
   getQuery() {
