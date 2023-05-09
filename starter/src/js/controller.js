@@ -72,6 +72,10 @@ const controlSearchResults = async function () {
   }
 };
 
+/**
+ * Render recipes given the page to go to
+ * @param {*} goToPage page to go to
+ */
 const controlPagination = function (goToPage) {
   // Render New results
   resultView.render(model.getSearchResultPage(goToPage));
@@ -79,11 +83,26 @@ const controlPagination = function (goToPage) {
   // Render New pagination buttons
   paginationView.render(model.state.search);
 };
+
+/**
+ * Update servings and ingredients
+ * Render the recipe with updated servings
+ * @param {*} servings servings to update to
+ */
+const controlServings = function (servings) {
+  // Update the recipe servings (in state)
+  model.updateServings(servings);
+
+  // Update the recipe view
+  recipeView.render(model.state.recipe);
+};
+
 /**
  * Initialice event handlers
  */
 const init = function () {
   recipeView.addHandlerRender(controlRecipe);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
 };

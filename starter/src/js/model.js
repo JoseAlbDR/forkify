@@ -49,6 +49,7 @@ export const loadRecipe = async function (id) {
  */
 export const loadSearchResults = async function (query) {
   try {
+    // Save current query
     state.search.query = query;
 
     // API call
@@ -79,6 +80,7 @@ export const loadSearchResults = async function (query) {
  * @returns sublist with PAGINATION_SIZE results
  */
 export const getSearchResultPage = function (page = state.search.page) {
+  // Update the page
   state.search.page = page;
 
   // page = 2 => (2 - 1) * 10 = 10 start
@@ -88,4 +90,20 @@ export const getSearchResultPage = function (page = state.search.page) {
   const end = page * state.search.resultsPerPage;
 
   return state.search.results.slice(start, end);
+};
+
+/**
+ * For each ingredient update the quantity
+ * Update the servings of the recipe
+ * @param {*} newServings new servings quantity
+ */
+export const updateServings = function (newServings) {
+  // foreach ingredient update the quantity
+  state.recipe.ingredients.forEach(ing => {
+    // newQt = oldQt * newServings / oldServings
+    ing.quantity *= newServings / state.recipe.servings;
+  });
+
+  // Update the servings
+  state.recipe.servings = newServings;
 };

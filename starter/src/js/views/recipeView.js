@@ -11,12 +11,35 @@ class RecipeView extends View {
   _message = '';
 
   /**
-   * Add an event listener
+   * Event listener for load page and haschange
    * @param  {fn} callback function for event listener
    */
-  addHandlerRender(fn) {
+  addHandlerRender(handler) {
     // For each event passed create an event listener
-    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, fn));
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  /**
+   * Event listener for increase/decrease buttons
+   * @param {*} handler handler function
+   */
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (event) {
+      // Select closest with btn
+      const btn = event.target.closest('.btn--tiny');
+
+      // Guard
+      if (!btn) return;
+
+      // Get servings from button
+      const servings = +btn.dataset.servings;
+
+      // Servings cant be 0 or less
+      if (servings <= 0) return;
+
+      // Callback handler function with updated servings
+      handler(servings);
+    });
   }
 
   /**
@@ -54,12 +77,16 @@ class RecipeView extends View {
           <span class="recipe__info-text">servings</span>
 
           <div class="recipe__info-buttons">
-            <button class="btn--tiny btn--increase-servings">
+            <button data-servings= ${
+              this._data.servings - 1
+            } class="btn--tiny btn--decrease-servings">
               <svg>
                 <use href="${icons}#icon-minus-circle"></use>
               </svg>
             </button>
-            <button class="btn--tiny btn--increase-servings">
+            <button data-servings= ${
+              this._data.servings + 1
+            } class="btn--tiny btn--increase-servings">
               <svg>
                 <use href="${icons}#icon-plus-circle"></use>
               </svg>
