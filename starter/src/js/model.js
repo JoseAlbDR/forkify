@@ -1,5 +1,6 @@
 import { API_URL } from './config';
 import { getJSON } from './helper';
+import { PAGINATION_SIZE } from './config';
 
 /**
  * Save the curren recipe state
@@ -9,6 +10,8 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
+    resultsPerPage: PAGINATION_SIZE,
   },
 };
 
@@ -68,4 +71,21 @@ export const loadSearchResults = async function (query) {
   } catch (err) {
     throw err;
   }
+};
+
+/**
+ * Slice search results in PAGINATION_SIZE
+ * @param {*} page the page we want to show (default is 1)
+ * @returns sublist with PAGINATION_SIZE results
+ */
+export const getSearchResultPage = function (page = state.search.page) {
+  state.search.page = page;
+
+  // page = 2 => (2 - 1) * 10 = 10 start
+  const start = (page - 1) * state.search.resultsPerPage;
+
+  // page = 2 => 2 * 10 = 20 end
+  const end = page * state.search.resultsPerPage;
+
+  return state.search.results.slice(start, end);
 };

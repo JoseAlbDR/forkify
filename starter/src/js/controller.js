@@ -2,16 +2,17 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
+import paginationView from './views/paginationView.js';
 
 // Pollyfilling
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 
-// Parcel hot reload
-if (module.hot) {
-  module.hot.accept();
-}
+// // Parcel hot reload
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 /**
  * Controler logic to render a recipe
@@ -25,13 +26,13 @@ const controlRecipe = async function () {
     // Guard clause
     if (!id) return;
 
-    // Loading spinner
+    // Renderspinner
     recipeView.renderSpinner();
 
-    // Loading Recipe
+    // Load Recipe
     await model.loadRecipe(id);
 
-    // Rendering recipe
+    // Render recipe
     recipeView.render(model.state.recipe);
 
     // Error handling
@@ -59,7 +60,10 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // Render all results
-    resultView.render(model.state.search.results);
+    resultView.render(model.getSearchResultPage());
+
+    // Render initial pagination buttons
+    paginationView.render(model.state.search);
 
     // Error handling
   } catch (err) {
@@ -68,11 +72,19 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlPagination = function (goToPage) {
+  // Render New results
+  resultView.render(model.getSearchResultPage(goToPage));
+
+  // Render New pagination buttons
+  paginationView.render(model.state.search);
+};
 /**
  * Initialice event handlers
  */
 const init = function () {
   recipeView.addHandlerRender(controlRecipe);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerPagination(controlPagination);
 };
 init();
