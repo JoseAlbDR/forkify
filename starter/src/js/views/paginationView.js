@@ -5,6 +5,11 @@ import icons from 'url:../../img/icons.svg';
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
+  /**
+   * Html markup for next page
+   * @param {*} page number of page
+   * @returns marup for next button
+   */
   _generateNextPage(page) {
     return `
     <button data-goto="${page}" class="btn--inline pagination__btn--next">
@@ -16,6 +21,11 @@ class PaginationView extends View {
     `;
   }
 
+  /**
+   * Html markup for prev page
+   * @param {*} page number of page
+   * @returns marup for prev button
+   */
   _generatePrevPage(page) {
     return `
     <button data-goto="${page}" class="btn--inline pagination__btn--prev">
@@ -27,7 +37,13 @@ class PaginationView extends View {
     `;
   }
 
+  /**
+   * Generates html markup for nex, prev or both buttons based
+   * on the numer of total pages
+   * @returns markup for prev, next or both buttons
+   */
   _generateMarkup() {
+    // Total pages
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
@@ -52,11 +68,22 @@ class PaginationView extends View {
     }
   }
 
+  /**
+   * Event listener por pagination buttons
+   * @param {*} handler handler function
+   */
   addHandlerPagination(handler) {
     this._parentElement.addEventListener('click', function (event) {
+      // Due to event propagation select closest btn to parent element
       const btn = event.target.closest('.btn--inline');
+
+      // If click outside a button (parent)
       if (!btn) return;
+
+      // Get page to go to based on the dataset of the button clicked
       const goToPage = +btn.dataset.goto;
+
+      // Pass the page to the handler function
       handler(goToPage);
     });
   }
