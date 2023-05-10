@@ -35,13 +35,22 @@ class RecipeView extends View {
       const servings = +btn.dataset.servings;
 
       // Servings cant be 0 or less
-      if (servings <= 0) return;
+      if (servings <= 0 || servings === 26) return;
 
       // Callback handler function with updated servings
       handler(servings);
     });
   }
 
+  addHandlerAddBookmark(handler) {
+    this._parentElement.addEventListener('click', function (event) {
+      const btn = event.target.closest('.btn--bookmark');
+
+      if (!btn) return;
+
+      handler();
+    });
+  }
   /**
    * Generate markup html template to render an recipe
    * @returns markup template
@@ -97,9 +106,11 @@ class RecipeView extends View {
         <div class="recipe__user-generated">
 
         </div>
-        <button class="btn--round">
+        <button class="btn--round btn--bookmark">
           <svg class="">
-            <use href="${icons}#icon-bookmark-fill"></use>
+            <use href="${icons}#icon-bookmark${
+      this._data.bookmarked ? '-fill' : ''
+    }"></use>
           </svg>
         </button>
       </div>

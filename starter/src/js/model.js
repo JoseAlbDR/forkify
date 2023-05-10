@@ -1,4 +1,4 @@
-import { API_URL } from './config';
+import { API_URL, PAGINATION_SIZE } from './config';
 import { getJSON } from './helper';
 import { PAGINATION_SIZE } from './config';
 
@@ -11,8 +11,9 @@ export const state = {
     query: '',
     results: [],
     page: 1,
-    resultsPerPage: 10,
+    resultsPerPage: 12,
   },
+  bookmarks: [],
 };
 
 /**
@@ -37,6 +38,10 @@ export const loadRecipe = async function (id) {
       ingredients: recipe.ingredients,
     };
 
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarked = true;
+    else state.recipe.bookmarked = false;
+
     // Error propagation
   } catch (err) {
     throw err;
@@ -51,6 +56,9 @@ export const loadSearchResults = async function (query) {
   try {
     // Save current query
     state.search.query = query;
+
+    // Set default page to 1 in each search
+    state.search.page = 1;
 
     // API call
     const data = await getJSON(`${API_URL}?search=${query}`);
@@ -106,4 +114,22 @@ export const updateServings = function (newServings) {
 
   // Update the servings
   state.recipe.servings = newServings;
+};
+
+/**
+ * Add a bookmark to the recipe
+ * @param {*} recipe
+ */
+export const addBookmark = function (recipe) {
+  // Add bookmark
+  state.bookmarks.push(recipe);
+
+  // Mark current recipe as bookmark
+  if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+};
+
+export const removeBookmark = function (id) {
+  const index = state.bookmarks.findIndex(el => el.id === id);
+  state.bookmarks.splice(index, 1);
+  if (id === state.recipe.id) state.recipe.bookmarked = false;
 };

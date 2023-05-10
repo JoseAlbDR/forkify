@@ -10,12 +10,14 @@ export default class View {
    * Render a recipe
    * @param {*} data the recipe data
    */
-  render(data) {
+  render(data, render = true) {
     // Save data into class
     this._data = data;
 
     // Generate markup
     const markup = this._generateMarkup();
+
+    if (!render) return markup;
 
     // Clear parent
     this._clear();
@@ -48,18 +50,18 @@ export default class View {
       // Save the current element
       const curEl = curElements[i];
 
-      // Updates changed TEXT
+      // Updates changed TEXT (quantities)
       // Check that newEl and curEl are different
       if (
         !newEl.isEqualNode(curEl) &&
         // Text value not empty
-        newEl.firstChild.nodeValue.trim() !== ''
+        newEl.firstChild?.nodeValue.trim() !== ''
       ) {
         // Save the TEXT
         curEl.textContent = newEl.textContent;
       }
 
-      // Updates changed ATTRIBUTES
+      // Updates changed ATTRIBUTES (dataset)
       if (!newEl.isEqualNode(curEl)) {
         // For each attribute in newEl != to curEl
         Array.from(newEl.attributes).forEach(attr =>

@@ -3,6 +3,7 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // Pollyfilling
 import 'core-js/stable';
@@ -31,6 +32,7 @@ const controlRecipe = async function () {
 
     // Update results view to mark selected search result
     resultView.update(model.getSearchResultPage());
+    bookmarksView.update(model.state.bookmarks);
 
     // Load Recipe
     await model.loadRecipe(id);
@@ -103,12 +105,24 @@ const controlServings = function (servings) {
   recipeView.update(model.state.recipe);
 };
 
+const controlAddBookmark = function () {
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else if (model.state.recipe.bookmarked)
+    model.removeBookmark(model.state.recipe.id);
+
+  recipeView.update(model.state.recipe);
+
+  // Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
+};
+
 /**
  * Initialice event handlers
  */
 const init = function () {
   recipeView.addHandlerRender(controlRecipe);
   recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
 };
