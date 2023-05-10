@@ -42,6 +42,10 @@ class RecipeView extends View {
     });
   }
 
+  /**
+   * Event listener for bookmark button
+   * @param {*} handler handler function
+   */
   addHandlerAddBookmark(handler) {
     this._parentElement.addEventListener('click', function (event) {
       const btn = event.target.closest('.btn--bookmark');

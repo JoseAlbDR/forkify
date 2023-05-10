@@ -16,6 +16,11 @@ export const state = {
   bookmarks: [],
 };
 
+/**
+ * Create a recipe object with app format
+ * @param {*} data
+ * @returns recipe object
+ */
 const createRecipeObject = function (data) {
   // Save data into object
   const { recipe } = data.data;
@@ -174,9 +179,12 @@ const init = function () {
   if (!storage) return;
   state.bookmarks = JSON.parse(storage);
 };
-
 init();
 
+/**
+ * Upload given recipe
+ * @param {*} newRecipe recipe to upload
+ */
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.keys(newRecipe)

@@ -140,7 +140,6 @@ class AddRecipeView extends View {
           </svg>
           <span>Upload</span>
         </button>
-    
     `;
   }
 }
