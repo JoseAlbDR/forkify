@@ -28,7 +28,7 @@ class SearchView {
 
   /**
    * Add event listener to handler
-   * @param {*} handler
+   * @param {function} handler Handler function for event listener
    */
   addHandlerSearch(handler) {
     this._parentEl.addEventListener('submit', function (e) {

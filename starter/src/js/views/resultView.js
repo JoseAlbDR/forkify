@@ -2,7 +2,7 @@ import View from './View';
 import previewView from './previewView';
 
 /**
- * Class for Results when a search is success
+ * Class to control results when a search is success
  */
 class ResultView extends View {
   _parentElement = document.querySelector('.results');

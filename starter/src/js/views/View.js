@@ -7,8 +7,10 @@ export default class View {
   _data;
 
   /**
-   * Render a recipe
-   * @param {*} data the recipe data
+   * Render the received object to the DOM
+   * @param {Object | Object[]} data Data to be rendered
+   * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
+   * @returns
    */
   render(data, render = true) {
     // Save data into class
@@ -28,7 +30,7 @@ export default class View {
 
   /**
    * Update the DOM only where the text or attributes changes
-   * @param {*} data
+   * @param {Object | Object[]} data Data to be updated
    */
   update(data) {
     this._data = data;
@@ -100,7 +102,7 @@ export default class View {
 
   /**
    * Render error message
-   * @param {*} message given
+   * @param {String} message message given
    */
   renderError(message = this._errorMessage) {
     const markup = `
@@ -123,7 +125,7 @@ export default class View {
 
   /**
    * Render success message
-   * @param {*} message given
+   * @param {String} message message given
    */
   renderMessage(message = this._message) {
     const markup = `

@@ -2,14 +2,14 @@ import View from './View';
 import previewView from './previewView';
 
 /**
- * Class for bookmarks
+ * Class to control bookmarks
  */
 class BookmarksView extends View {
   _parentElement = document.querySelector('.bookmarks__list');
 
   /**
    * Load bookmarks on load
-   * @param {*} handler
+   * @param {function} handler Handler function for event listener
    */
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
@@ -29,7 +29,7 @@ class BookmarksView extends View {
 
   /**
    * Default markup when there is no bookmarks
-   * @returns
+   * @returns default markup to show
    */
   _defaultMarkupBookmark() {
     return `

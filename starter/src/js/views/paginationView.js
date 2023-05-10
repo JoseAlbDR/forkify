@@ -3,15 +3,15 @@ import View from './View';
 import icons from 'url:../../img/icons.svg';
 
 /**
- * Class for pagination buttons
+ * Class to control pagination buttons
  */
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
   /**
    * Html markup for next page
-   * @param {*} page number of page
-   * @returns marup for next button
+   * @param {integer} page number of page to show in button
+   * @returns markup for next button
    */
   _generateNextPage(page) {
     return `
@@ -26,7 +26,7 @@ class PaginationView extends View {
 
   /**
    * Html markup for prev page
-   * @param {*} page number of page
+   * @param {integer} page number of page to show in button
    * @returns marup for prev button
    */
   _generatePrevPage(page) {
@@ -73,7 +73,7 @@ class PaginationView extends View {
 
   /**
    * Event listener por pagination buttons
-   * @param {*} handler handler function
+   * @param {function} handler Handler function for event listener
    */
   addHandlerPagination(handler) {
     this._parentElement.addEventListener('click', function (event) {

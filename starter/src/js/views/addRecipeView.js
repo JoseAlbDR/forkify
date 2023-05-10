@@ -1,7 +1,7 @@
 import View from './View';
 
 /**
- * Class for add recipe modal upload
+ * Class to control recipe modal upload
  */
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -48,7 +48,7 @@ class AddRecipeView extends View {
 
   /**
    * Event listener to get data from modal form
-   * @param {*} handler
+   * @param {function} handler
    */
   addHandlerUpload(handler) {
     // Parent element is upload button

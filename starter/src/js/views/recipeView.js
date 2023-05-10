@@ -12,7 +12,7 @@ class RecipeView extends View {
 
   /**
    * Event listener for load page and haschange
-   * @param  {fn} callback function for event listener
+   * @param  {function} callback function for event listener
    */
   addHandlerRender(handler) {
     // For each event passed create an event listener
@@ -21,7 +21,7 @@ class RecipeView extends View {
 
   /**
    * Event listener for increase/decrease buttons
-   * @param {*} handler handler function
+   * @param {function} handler Handler function for event listener
    */
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (event) {
@@ -44,7 +44,7 @@ class RecipeView extends View {
 
   /**
    * Event listener for bookmark button
-   * @param {*} handler handler function
+   * @param {function} handler Handler function for event listener
    */
   addHandlerAddBookmark(handler) {
     this._parentElement.addEventListener('click', function (event) {
@@ -153,7 +153,7 @@ class RecipeView extends View {
 
   /**
    * Generate a markup html template for ing
-   * @param {*} ing ingredient to render
+   * @param {object} ing ingredient to render
    * @returns markup html template with the ingredient data
    */
   _generateMarkupIngredient(ing) {
