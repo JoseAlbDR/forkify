@@ -1,3 +1,6 @@
+/**
+ * Class for search input
+ */
 class SearchView {
   _parentEl = document.querySelector('.search');
 

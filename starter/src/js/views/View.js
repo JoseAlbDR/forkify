@@ -1,7 +1,7 @@
 import icons from 'url:../../img/icons.svg';
 
 /**
- * Parent class with common properties and methods for
+ * Parent class with common properties and methods for all views
  */
 export default class View {
   _data;

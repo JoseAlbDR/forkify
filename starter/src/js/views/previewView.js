@@ -1,6 +1,9 @@
 import View from './View';
 import icons from 'url:../../img/icons.svg';
 
+/**
+ * Class to generate markup for recipe list and bookmark list since they share it
+ */
 class PreviewView extends View {
   _parentElement = '';
 
