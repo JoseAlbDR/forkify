@@ -4,6 +4,8 @@ import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
+import { MODAL_CLOSE_SEC } from './config.js';
 
 // Pollyfilling
 import 'core-js/stable';
@@ -132,7 +134,44 @@ const controlBookmarks = function () {
 };
 
 /**
- * Initialice event handlers
+ * Event handler to get the data from the modal form
+ * @param {*} newRecipe data with the submitted form
+ */
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    // Show render spinner
+    addRecipeView.renderSpinner();
+
+    // Await upload
+    await model.uploadRecipe(newRecipe);
+
+    // Render uploaded recipe
+    recipeView.render(model.state.recipe);
+
+    // Success message
+    addRecipeView.renderMessage();
+
+    // Render bookmark view
+    bookmarksView.render(model.state.bookmarks);
+
+    // Change ID in URL
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+    // windows.history.back()
+
+    // Hide form window after 2.5 secs
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
+
+    console.log(model.state.recipe);
+  } catch (err) {
+    console.error(err);
+    addRecipeView.renderError(err.message);
+  }
+};
+
+/**
+ * Initialicer
  */
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -141,5 +180,6 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();

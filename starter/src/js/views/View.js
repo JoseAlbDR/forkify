@@ -102,7 +102,7 @@ export default class View {
    * Render error message
    * @param {*} message given
    */
-  renderError(message) {
+  renderError(message = this._errorMessage) {
     const markup = `
       <div class="error">
         <div>

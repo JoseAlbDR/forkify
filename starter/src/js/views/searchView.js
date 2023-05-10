@@ -3,6 +3,7 @@
  */
 class SearchView {
   _parentEl = document.querySelector('.search');
+  _errorMessage = `We could not find that recipe. Please try another one!`;
 
   /**
    * Get text from form input
