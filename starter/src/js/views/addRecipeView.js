@@ -27,15 +27,8 @@ class AddRecipeView extends View {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
 
+    // Render form with generated markup
     this.render();
-    // // Clear parent
-    // this._clear();
-
-    // // Render Form
-    // this._parentElement.insertAdjacentHTML(
-    //   'afterbegin',
-    //   this._generateMarkup()
-    // );
   }
 
   /**
@@ -71,8 +64,6 @@ class AddRecipeView extends View {
 
       // Callback handler function with data
       handler(data);
-
-      console.log(this);
     });
   }
 

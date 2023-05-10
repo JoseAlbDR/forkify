@@ -65,11 +65,10 @@ export const AJAX = async function (url, uploadData = undefined) {
     // Await data
     const data = await res.json();
 
-    return data;
-
     // Throw error if response fail
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
+    return data;
     // Error propagation
   } catch (err) {
     throw err;

@@ -10,7 +10,6 @@ import { MODAL_CLOSE_SEC } from './config.js';
 // Pollyfilling
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime';
 
 // // Parcel hot reload
 // if (module.hot) {
@@ -65,16 +64,17 @@ const controlSearchResults = async function () {
     // Guard
     if (!query) return;
 
-    console.log(query);
-
     // Await promise with query result
     await model.loadSearchResults(query);
+
+    console.log(model.state.search.results);
 
     // Render all results
     resultView.render(model.getSearchResultPage());
 
     // Render initial pagination buttons
     paginationView.render(model.state.search);
+    console.log(model.state.recipe.key);
 
     // Error handling
   } catch (err) {

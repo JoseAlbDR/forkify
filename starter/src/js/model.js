@@ -3,7 +3,7 @@ import { AJAX } from './helper';
 import { PAGINATION_SIZE, API_KEY } from './config';
 
 /**
- * Save the curren recipe state
+ * Object to Save the current recipe state
  */
 export const state = {
   recipe: {},
@@ -19,6 +19,7 @@ export const state = {
 const createRecipeObject = function (data) {
   // Save data into object
   const { recipe } = data.data;
+
   return {
     id: recipe.id,
     title: recipe.title,
@@ -39,12 +40,12 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
   try {
     // Store data from API
-    const data = await AJAX(`${API_URL}/${id}`);
+    const data = await AJAX(`${API_URL}/${id}?key=${API_KEY}`);
 
+    // Save data in state
     state.recipe = createRecipeObject(data);
 
-    console.log(data.data.recipe);
-
+    // Set bookmarked true or false
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
@@ -68,9 +69,7 @@ export const loadSearchResults = async function (query) {
     state.search.page = 1;
 
     // API call
-    const data = await AJAX(`${API_URL}?search=${query}`);
-
-    console.log(data);
+    const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
     // If there are no results throw an error
     if (!data.results) throw new Error('Recipe not found, try another one.');
@@ -82,6 +81,7 @@ export const loadSearchResults = async function (query) {
         title: rec.title,
         publisher: rec.publisher,
         image: rec.image_url,
+        ...(rec.key && { key: rec.key }),
       };
     });
 
@@ -186,7 +186,7 @@ export const uploadRecipe = async function (newRecipe) {
       .map(ing => {
         // Map every ingredient filtered destructuring from
         // the newRecipe array where the values are
-        const ingArr = newRecipe[ing].replaceAll(' ', '').split(',');
+        const ingArr = newRecipe[ing].trim().split(',');
 
         if (ingArr.length !== 3)
           throw new Error(
@@ -200,6 +200,7 @@ export const uploadRecipe = async function (newRecipe) {
         return { quantity: quantity ? +quantity : null, unit, description };
       });
 
+    // Same format to POST recipe
     const uploadRecipe = {
       cooking_time: +newRecipe.cookingTime,
       id: newRecipe.id,
@@ -211,8 +212,13 @@ export const uploadRecipe = async function (newRecipe) {
       title: newRecipe.title,
     };
 
+    // POST query
     const data = await AJAX(`${API_URL}?key=${API_KEY}`, uploadRecipe);
+
+    // Convert to app object
     state.recipe = createRecipeObject(data);
+
+    // Auto add to bookmark array
     addBookmark(state.recipe);
   } catch (err) {
     throw err;
