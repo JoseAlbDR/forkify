@@ -1,7 +1,8 @@
 # Forkify
 
 Recipe application with custom recipe upload to remote API.
-Functionallity:
+
+## Functionallity:
 
 - Search a recipe with a keyword (p.e pizza, avocado, meat, etc...)
 - Select a recipe from the list to render
@@ -19,6 +20,15 @@ Functionallity:
     -- "Quantity,Unit,Description" (scv)
 - Only the uploader user can see his own recipes (based on API key)
 - API URL: "https://forkify-api.herokuapp.com/v2"
+
+This project is from a udemy curse.
+
+- https://www.udemy.com/course/the-complete-javascript-course
+
+There are 2 directories in the repository:
+
+- final: Contains the final files done by the TEACHER
+- starter: Contains the final files done by ME
 
 ## TODO
 
