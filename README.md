@@ -3,7 +3,7 @@
 Recipe application with custom recipe upload to remote API.
 
 ** WEB PAGE **
-Forkify - JADR (https://forkify-jadr.netlify.app)
+[Forkify - JADR] (https://forkify-jadr.netlify.app)
 
 This project is from a udemy curse.
 
@@ -11,8 +11,8 @@ This project is from a udemy curse.
 
 There are 2 directories in the repository:
 
-- final(https://github.com/JoseAlbDR/forkify/tree/main/final): Contains the final files done by the TEACHER
-- starter(https://github.com/JoseAlbDR/forkify/tree/main/starter): Contains the final files done by ME
+- [final](https://github.com/JoseAlbDR/forkify/tree/main/final): Contains the final files done by the TEACHER
+- [starter](https://github.com/JoseAlbDR/forkify/tree/main/starter): Contains the final files done by ME
 
 ## Functionallity:
 
