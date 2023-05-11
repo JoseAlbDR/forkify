@@ -6,6 +6,8 @@ Recipe application with custom recipe upload to remote API.
 
 [Forkify-JADR](https://forkify-jadr.netlify.app)
 
+## Project Info
+
 This project is from a udemy curse.
 
 - https://www.udemy.com/course/the-complete-javascript-course
