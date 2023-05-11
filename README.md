@@ -8,15 +8,15 @@ Functionallity:
 - Selected recipe show info about the recipe as Name, Photo, Servings, Ingredients...
 - Change the number of servings and the ingredients with auto increase or decrease acordinglly
 - Bookmark a recipe by clicking in the bookmark icon
-  -- Bookmarked recipes will show in the BOOKMARKS list
-  -- Bookmarked recipes persist on page reloads (saved in local storage)
-  -- Select a bookmarked recipe from BOOKMARKS list to render it
+  - Bookmarked recipes will show in the BOOKMARKS list
+  - Bookmarked recipes persist on page reloads (saved in local storage)
+  - Select a bookmarked recipe from BOOKMARKS list to render it
 - Upload a recipe to the API with the ADD RECIPE button
 - In order to Upload a recipe:
-  -- Publisher must be at least 4 characters long
-  -- URL must be at least 5 characters long
-  -- INGREDIENTS have the following format:
-  --- "Quantity,Unit,Description" (scv)
+  - Publisher must be at least 4 characters long
+  - URL must be at least 5 characters long
+  - INGREDIENTS have the following format:
+    -- "Quantity,Unit,Description" (scv)
 - Only the uploader user can see his own recipes (based on API key)
 - API URL: "https://forkify-api.herokuapp.com/v2"
 
