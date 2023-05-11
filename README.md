@@ -2,14 +2,17 @@
 
 Recipe application with custom recipe upload to remote API.
 
+** WEB PAGE **
+Forkify - JADR (https://forkify-jadr.netlify.app)
+
 This project is from a udemy curse.
 
 - https://www.udemy.com/course/the-complete-javascript-course
 
 There are 2 directories in the repository:
 
-- final: Contains the final files done by the TEACHER
-- starter: Contains the final files done by ME
+- final(https://github.com/JoseAlbDR/forkify/tree/main/final): Contains the final files done by the TEACHER
+- starter(https://github.com/JoseAlbDR/forkify/tree/main/starter): Contains the final files done by ME
 
 ## Functionallity:
 
@@ -29,15 +32,6 @@ There are 2 directories in the repository:
     -- "Quantity,Unit,Description" (scv)
 - Only the uploader user can see his own recipes (based on API key)
 - API URL: "https://forkify-api.herokuapp.com/v2"
-
-This project is from a udemy curse.
-
-- https://www.udemy.com/course/the-complete-javascript-course
-
-There are 2 directories in the repository:
-
-- final: Contains the final files done by the TEACHER
-- starter: Contains the final files done by ME
 
 ## TODO
 
