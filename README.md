@@ -2,6 +2,15 @@
 
 Recipe application with custom recipe upload to remote API.
 
+This project is from a udemy curse.
+
+- https://www.udemy.com/course/the-complete-javascript-course
+
+There are 2 directories in the repository:
+
+- final: Contains the final files done by the TEACHER
+- starter: Contains the final files done by ME
+
 ## Functionallity:
 
 - Search a recipe with a keyword (p.e pizza, avocado, meat, etc...)
