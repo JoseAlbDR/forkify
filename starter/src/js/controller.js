@@ -46,7 +46,7 @@ const controlRecipe = async function () {
     // Error handling
   } catch (err) {
     console.error(err.message);
-    recipeView.renderError(err.message);
+    recipeView.renderError();
   }
 };
 
@@ -66,15 +66,16 @@ const controlSearchResults = async function () {
 
     // Await promise with query result
     await model.loadSearchResults(query);
+    console.log(model.state.search.results.leng);
 
-    console.log(model.state.search.results);
+    if (!model.state.search.results.length)
+      throw new Error('No results found, try again.');
 
     // Render all results
     resultView.render(model.getSearchResultPage());
 
     // Render initial pagination buttons
     paginationView.render(model.state.search);
-    console.log(model.state.recipe.key);
 
     // Error handling
   } catch (err) {

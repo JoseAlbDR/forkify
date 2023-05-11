@@ -57,6 +57,7 @@ export const loadRecipe = async function (id) {
 
     // Error propagation
   } catch (err) {
+    console.error(err.message);
     throw err;
   }
 };
@@ -76,9 +77,6 @@ export const loadSearchResults = async function (query) {
     // API call
     const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
-    // If there are no results throw an error
-    if (!data.results) throw new Error('Recipe not found, try another one.');
-
     // Populate results array with recipes
     state.search.results = data.data.recipes.map(rec => {
       return {
@@ -92,6 +90,7 @@ export const loadSearchResults = async function (query) {
 
     // Error propagation
   } catch (err) {
+    console.error(err.message);
     throw err;
   }
 };

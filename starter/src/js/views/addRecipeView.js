@@ -6,7 +6,6 @@ import View from './View';
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
   _message = 'Recipe was successfully uploaded :)';
-  _errorMessage = '`We could not upload the recipe. Please try again later!`';
 
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
